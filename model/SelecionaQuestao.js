@@ -1,11 +1,11 @@
 var indice_questao = 0;
 var pontos = 0;
 
-var perguntas =     ['Capital do brasil', 'Capital do Ceará',  'Aceleração da gravidade'];
-var alternativa_a = ['Brasilia',            'Recife',           '9,8m/s'];
-var alternativa_b = ['Salvador',            'Fortaleza',        '0'];
-var alternativa_c = ['Rio de Janeiro',      'Juazeior',         '13m/s'];
-var resposta =      ['Brasilia',            'Fortaleza',        '9,8m/s'];
+var perguntas =     ['Capital do brasil', 'Capital do Ceará',  'Aceleração da gravidade', 'New()'];
+var alternativa_a = ['Brasilia',            'Recife',           '9,8m/s',                 'Destroi Objeto'];
+var alternativa_b = ['Salvador',            'Fortaleza',        '0',                      'Limpa Objeto'];
+var alternativa_c = ['Rio de Janeiro',      'Juazeior',         '13m/s',                  'Cria Objeto'];
+var resposta =      ['Brasilia',            'Fortaleza',        '9,8m/s',                 'Cria Objeto'];
 
 function mostraPergunta() {
     var exibir = this.perguntas[this.indice_questao];
@@ -42,26 +42,28 @@ function mostraAlternativa_C() {
 function respondelAlternativa_A() {
     if(this.alternativa_a[this.indice_questao] == this.resposta[this.indice_questao]){
         this.pontos++;
+        //alert("pontos: " +getPontos());
     }
     proximo();
 }
 function respondelAlternativa_B() {
     if(this.alternativa_b[this.indice_questao] == this.resposta[this.indice_questao]){
         this.pontos++;
+        //alert("pontos: " +getPontos());
     }
     proximo();
 }
 function respondelAlternativa_C() {
     if(this.alternativa_c[this.indice_questao] == this.resposta[this.indice_questao]){
         this.pontos++;
+        //alert("pontos: " +getPontos());
     }
     proximo();
 }
 
 function proximo(){
     this.indice_questao++;
-    alert("Indice questão: " + this.indice_questao + " | Tamnhao Array perrgunta: " + this.perguntas.length);
-    if(this.indice_questao == this.perguntas.length){
+    if(this.indice_questao >= this.perguntas.length){
         finaliza();
     } else {
         atualizaTela();
@@ -69,22 +71,22 @@ function proximo(){
 }
 
 function finaliza(){
-    document.getElementById("area_jogo").innerHTML = '<h1>FIM DE JOGO</h1>';
+    document.getElementById("pergunta").innerHTML = 'FIM DE JOGO';
 
-    document.getElementById("inf_jogador").innerHTML = '<h3>Pontos: '+ getPontos() +'</h3>'
+    document.getElementById("quiz").innerHTML = '<h3>Pontos: '+ getPontos() +'</h3>'
+    document.getElementById("points").innerHTML = 'Pontos: ' + getPontos();
 }
 
 function atualizaTela(){
-    document.getElementById("area_jogo").innerHTML =
-    '<h1>' + atualizaPergunta() + '</h1>' +
-    '<br><br><br>' +
-    '<button onclick="respondelAlternativa_A()">A - ' + atualizaAlternativa_A() + '</button>' +
-    '<br>' +
-    '<button onclick="respondelAlternativa_B()">B - ' + atualizaAlternativa_B() + '</button>' +
-    '<br>' +
-    '<button onclick="respondelAlternativa_C()">C - ' + atualizaAlternativa_C() + '</button>';
+    document.getElementById("pergunta").innerHTML = atualizaPergunta();
+    
+    document.getElementById("alternativa_a").innerHTML = '<input id="letra_a" onclick="respondelAlternativa_A()" type="radio" name="q_answer" value="1">' + atualizaAlternativa_A() + '';
+    document.getElementById("alternativa_b").innerHTML = '<input id="letra_b" onclick="respondelAlternativa_B()" type="radio" name="q_answer" value="1">' + atualizaAlternativa_B() + '';
+    document.getElementById("alternativa_c").innerHTML = '<input id="letra_c" onclick="respondelAlternativa_C()" type="radio" name="q_answer" value="1">' + atualizaAlternativa_C() + '';
 
-    document.getElementById("inf_jogador").innerHTML = '<h3>Pontos: '+ getPontos() +'</h3>'
+    document.getElementById("points").innerHTML = 'Pontos: ' + getPontos();
+    
+    
 }
 
 function getPontos() {
