@@ -1,5 +1,6 @@
 var indice_questao = 0;
 var pontos = 0;
+var valor_acerto = 1000;
 
 var perguntas =     ['Capital do brasil', 'Capital do Ceará',  'Aceleração da gravidade', 'New()'];
 var alternativa_a = ['Brasilia',            'Recife',           '9,8m/s',                 'Destroi Objeto'];
@@ -73,7 +74,7 @@ function proximo(){
 function finaliza(){
     document.getElementById("pergunta").innerHTML = 'FIM DE JOGO';
 
-    document.getElementById("quiz").innerHTML = '<h3>Pontos: '+ getPontos() +'</h3>'
+    document.getElementById("quiz").innerHTML = '<h4>Parabéns! Você acaba de ganhar: </h4><h3>R$ '+ getPontos() * this.valor_acerto +'</h3>'
     document.getElementById("points").innerHTML = 'Pontos: ' + getPontos();
 }
 
@@ -84,7 +85,7 @@ function atualizaTela(){
     document.getElementById("alternativa_b").innerHTML = '<input id="letra_b" onclick="respondelAlternativa_B()" type="radio" name="q_answer" value="1">' + atualizaAlternativa_B() + '';
     document.getElementById("alternativa_c").innerHTML = '<input id="letra_c" onclick="respondelAlternativa_C()" type="radio" name="q_answer" value="1">' + atualizaAlternativa_C() + '';
 
-    document.getElementById("points").innerHTML = 'Pontos: ' + getPontos();
+    document.getElementById("points").innerHTML = 'R$ ' + getPontos() * this.valor_acerto;
     
     
 }
